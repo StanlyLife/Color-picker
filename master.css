@@ -54,7 +54,9 @@ svg {
   opacity: 0;
 }
 
-.sliders button {
+.sliders button,
+.close-save,
+.close-libary {
   position: absolute;
   top: 0;
   right: 0;
@@ -137,7 +139,9 @@ input[type="range"]::-webkit-slider-thumb {
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 
-.copy-container {
+.copy-container,
+.save-container,
+.libary-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -152,7 +156,9 @@ input[type="range"]::-webkit-slider-thumb {
   pointer-events: none;
 }
 
-.copy-popup {
+.copy-popup,
+.save-popup,
+.libary-popup {
   background: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
@@ -165,16 +171,94 @@ input[type="range"]::-webkit-slider-thumb {
   transform: translateY(-2rem);
 }
 
-.copy-popup h4 {
+.copy-popup h4,
+.save-popup h4,
+.libary-popup h4 {
   font-size: 2rem;
   padding: 1rem;
 }
 
-.copy-container.active {
+.copy-container.active,
+.libary-container.active,
+.save-container.active {
   opacity: 1;
   pointer-events: all;
 }
 
-.copy-popup.active {
+.copy-popup.active .copy-save.active .copy-libary.active {
   transform: translateY(0rem);
+}
+
+.save-popup {
+  border-top-right-radius: 0;
+}
+
+.save-name {
+}
+
+.save-container {
+}
+
+.close-save,
+.close-libary {
+}
+
+.submit-save {
+  margin: 2rem;
+  padding: 1rem 3rem;
+  background: rgb(82, 82, 82);
+  color: white;
+  border: none;
+  font-family: "Muli", sans-serif;
+  font-size: 1.25rem;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.libary-popup {
+  width: 50%;
+  padding: 1rem;
+  justify-content: flex-start;
+  max-height: 50vh;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.custom-palette {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 2rem;
+}
+
+.custom-palette h4 {
+  flex: 1;
+}
+
+.custom-palette button {
+  border: none;
+  height: 3rem;
+  flex: 1;
+  width: auto;
+  color: white;
+  background-color: #333;
+  font-size: 1.25rem;
+
+  transition: all 0.25s ease-in-out;
+}
+
+.custom-palette button:hover {
+  background-color: rgb(190, 190, 190);
+  color: #333;
+}
+
+.small-preview {
+  display: flex;
+  flex: 1;
+}
+
+.small-preview div {
+  height: 3rem;
+  flex: 1;
 }
