@@ -246,6 +246,7 @@ libaryBtn.addEventListener("click", openLibary);
 closeLibaryBtn.addEventListener("click", closeLibary);
 
 //Functions
+
 function openPalette(e) {
   const popup = saveContainer.children[0];
   saveContainer.classList.add("active");
@@ -309,9 +310,14 @@ function createPalettes(objOne, objTwo, todo) {
     preview.appendChild(smallDiv);
   });
   const paletteBtn = document.createElement("button");
+  const paletteDeleteBtn = document.createElement("button");
   paletteBtn.classList.add("pick-palette-btn");
   paletteBtn.classList.add(objOne.nr);
   paletteBtn.innerText = "select";
+
+  paletteDeleteBtn.classList.add("delete-palette");
+  paletteDeleteBtn.classList.add(objOne.nr);
+  paletteDeleteBtn.innerHTML = "<i class='fas fa-trash'></i>";
 
   //attatch event to button
   paletteBtn.addEventListener("click", (e) => {
@@ -325,15 +331,22 @@ function createPalettes(objOne, objTwo, todo) {
       getTextContrast(color, text);
       updateTextUI(index);
     });
+
     if (todo === "retrieve") {
       resetInputs();
     }
+  });
+
+  paletteDeleteBtn.addEventListener("click", (e) => {
+    const index = e.target.classList[1];
+    deletePalette(e, index);
   });
 
   //append to libary
   palette.appendChild(title);
   palette.appendChild(preview);
   palette.appendChild(paletteBtn);
+  palette.appendChild(paletteDeleteBtn);
   libaryContainer.children[0].appendChild(palette);
 }
 
@@ -346,6 +359,21 @@ function getLocal() {
       createPalettes(paletteObj, paletteObjects, "retrieve");
     });
   }
+}
+
+function deletePalette(e, index) {
+  const paletteObjects = JSON.parse(localStorage.getItem("palettes"));
+  let i = 0;
+  paletteObjects.forEach((x) => {
+    if (x.name === e.target.parentElement.children[0].innerText) {
+      paletteObjects.splice(i, 1);
+      console.log(`removed ${i}: @ ${x.name}`);
+      i++;
+    }
+  });
+  updatedPalettes = JSON.stringify(paletteObjects);
+  localStorage.setItem("palettes", updatedPalettes);
+  e.target.parentElement.remove();
 }
 
 /* END palette work */

@@ -238,9 +238,8 @@ input[type="range"]::-webkit-slider-thumb {
 
 .custom-palette button {
   border: none;
-  height: 3rem;
-  flex: 1;
-  width: auto;
+  height: 5rem;
+  min-width: 6rem;
   color: white;
   background-color: #333;
   font-size: 1.25rem;
@@ -259,6 +258,16 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .small-preview div {
-  height: 3rem;
+  height: 5rem;
   flex: 1;
+}
+
+.delete-palette {
+  background-color: indianred !important;
+  min-width: 4rem !important;
+}
+
+.delete-palette:hover {
+  color: indianred !important;
+  background-color: #333 !important;
 }
