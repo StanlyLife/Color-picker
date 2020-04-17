@@ -19,8 +19,6 @@ svg {
   min-height: 80vh;
   display: flex;
   color: wheat;
-
-  background-color: lawngreen;
 }
 
 .color {
@@ -44,15 +42,16 @@ svg {
   flex-direction: column;
   position: absolute;
   bottom: 0;
-  background: rgb(201, 201, 201);
+  background: rgb(240, 240, 240);
   padding: 1rem;
-
+  width: 75%;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
 
-  transform: translateY(100px);
+  /* pointer-events: none; */
+  /* transform: translateY(100px); */
   transition: all 0.5s ease-in-out;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .sliders button {
@@ -115,4 +114,25 @@ svg {
   font-size: 2rem;
   border: none;
   background: none;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  margin: 1rem 0;
+  width: 100%;
+  position: relative;
+  border-radius: 1rem;
+  cursor: pointer;
+  background: #ffffff;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 500px;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid #333;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }

@@ -4,6 +4,20 @@ const generateBtn = document.querySelector(".generate");
 const sliders = document.querySelectorAll("input[type='range']");
 const currentHexes = document.querySelectorAll(".color h2");
 let initialColors;
+
+//Event listeners
+
+sliders.forEach((slider) => {
+  slider.addEventListener("input", hslControls);
+});
+
+colorDivs.forEach((div, index) => {
+  div.addEventListener("change", () => {
+    /* callback function */
+    updateTextUI(index);
+  });
+});
+
 //functions
 
 function generateHex() {
@@ -20,16 +34,28 @@ function generateHex() {
 }
 
 function randomizeColor() {
+  initialColors = [];
   colorDivs.forEach((div, index) => {
     const hexText = div.children[0];
     const randomColor = generateHex();
+
+    initialColors.push(chroma(randomColor).hex());
 
     div.style.backgroundColor = randomColor;
     hexText.innerText = randomColor;
 
     /*contrast check*/
     getTextContrast(randomColor, hexText);
+
+    const color = chroma(randomColor);
+    const sliders = div.querySelectorAll(".sliders input");
+    const hue = sliders[0];
+    const brightness = sliders[1];
+    const saturation = sliders[2];
+
+    colorizeSliders(color, hue, brightness, saturation);
   });
+  resetInputs();
 }
 
 function getTextContrast(color, text) {
@@ -39,6 +65,89 @@ function getTextContrast(color, text) {
   } else {
     text.style.color = "#fff";
   }
+}
+
+function colorizeSliders(color, hue, brightness, saturation) {
+  /* saturation */
+  const noSat = color.set("hsl.s", 0);
+  const fullSat = color.set("hsl.s", 1);
+  const scaleSat = chroma.scale([noSat, color, fullSat]);
+  /* brightness */
+  const midBright = color.set("hsl.l", 0.5);
+  const scaleBright = chroma.scale(["black", midBright, "white"]);
+  /* brightness */
+
+  /*update input*/
+  saturation.style.backgroundImage = `linear-gradient(to right, ${scaleSat(
+    0
+  )}, ${scaleSat(1)})`;
+  brightness.style.backgroundImage = `linear-gradient(to right, ${scaleBright(
+    0
+  )},${scaleBright(0.5)},  ${scaleBright(1)})`;
+  hue.style.backgroundImage = `linear-gradient(to right,
+     rgb(204,75,75),
+      rgb(204,204,75),
+       rgb(75,204,75),
+        rgb(75,204,204),
+         rgb(75,75,204),
+          rgb(204,75,204),
+           rgb(204,75,75))`;
+}
+
+function hslControls(e) {
+  const index =
+    e.target.getAttribute("data-bright") ||
+    e.target.getAttribute("data-sat") ||
+    e.target.getAttribute("data-hue");
+
+  let sliders = e.target.parentElement.querySelectorAll("input[type='range']");
+
+  const hue = sliders[0];
+  const brightness = sliders[1];
+  const saturation = sliders[2];
+
+  const bgColor = initialColors[index];
+  let color = chroma(bgColor)
+    .set("hsl.s", saturation.value)
+    .set("hsl.l", brightness.value)
+    .set("hsl.h", hue.value);
+
+  colorDivs[index].style.backgroundColor = color;
+}
+
+function updateTextUI(index) {
+  const activeDiv = colorDivs[index];
+  const color = chroma(activeDiv.style.backgroundColor);
+  const textHex = activeDiv.querySelector("h2");
+  const icons = activeDiv.querySelectorAll(".controls button");
+  textHex.innerText = color.hex();
+
+  //check text contrast
+  getTextContrast(color, textHex);
+  for (icon of icons) {
+    getTextContrast(color, icon);
+  }
+}
+
+function resetInputs() {
+  const sliders = document.querySelectorAll(".sliders input");
+  sliders.forEach((slider) => {
+    if (slider.name === "hue") {
+      const hueColor = initialColors[slider.getAttribute("data-hue")];
+      const hueValue = chroma(hueColor).hsl()[0];
+      slider.value = Math.floor(hueValue);
+    }
+    if (slider.name === "saturation") {
+      const satColor = initialColors[slider.getAttribute("data-sat")];
+      const atValue = chroma(satColor).hsl()[1];
+      slider.value = Math.floor((satValue * 100) / 100);
+    }
+    if (slider.name === "brightness") {
+      const brightColor = initialColors[slider.getAttribute("data-bright")];
+      const brightValue = chroma(brightColor).hsl()[2];
+      slider.value = Math.floor((brightValue * 100) / 100);
+    }
+  });
 }
 
 randomizeColor();
