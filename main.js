@@ -328,7 +328,17 @@ function createPalettes(objOne, objTwo, todo) {
   //attatch event to button
   paletteBtn.addEventListener("click", (e) => {
     closeLibary();
-    const paletteIndex = e.target.classList[1];
+    let i = -1;
+    let paletteIndex;
+    objTwo.forEach((x) => {
+      i++;
+      if (e.target.classList[1] == x.nr) {
+        paletteIndex = i;
+      } else {
+        console.log(`target: ${e.target.classList[1]} x: ${x.nr} I: ${i}`);
+      }
+    });
+
     initialColors = [];
     objTwo[paletteIndex].colors.forEach((color, index) => {
       initialColors.push(color);
