@@ -265,7 +265,13 @@ function savePalette(e) {
     colors.push(hex.innerText);
   });
   /*local storage */
-  let paletteNr = savedPalettes.length;
+  let paletteNr;
+  paletteObjects = JSON.parse(localStorage.getItem("palettes"));
+  if (paletteObjects) {
+    paletteNr = paletteObjects.length;
+  } else {
+    paletteNr = savedPalettes.length;
+  }
   const paletteObj = { name, colors, nr: paletteNr };
   savedPalettes.push(paletteObj);
 
@@ -352,7 +358,7 @@ function createPalettes(objOne, objTwo, todo) {
 
 function getLocal() {
   if (localStorage.getItem("palettes") === null) {
-    localStorage = [];
+    localPalettes = [];
   } else {
     const paletteObjects = JSON.parse(localStorage.getItem("palettes"));
     paletteObjects.forEach((paletteObj) => {
@@ -368,7 +374,6 @@ function deletePalette(e, index) {
     if (x.name === e.target.parentElement.children[0].innerText) {
       paletteObjects.splice(i, 1);
       console.log(`removed ${i}: @ ${x.name}`);
-      i++;
     }
   });
   updatedPalettes = JSON.stringify(paletteObjects);
