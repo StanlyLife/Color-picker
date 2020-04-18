@@ -54,6 +54,16 @@ svg {
   opacity: 0;
 }
 
+.sliders span {
+  color: #333;
+}
+
+.sliders.active {
+  opacity: 1;
+  transform: translateY(0px);
+  pointer-events: all;
+}
+
 .sliders button,
 .close-save,
 .close-libary {
@@ -68,12 +78,6 @@ svg {
   background-color: rgb(87, 87, 87);
   font-weight: bolder;
   color: white;
-}
-
-.sliders.active {
-  opacity: 1;
-  transform: translateY(0px);
-  pointer-events: all;
 }
 
 .controls {
@@ -193,16 +197,6 @@ input[type="range"]::-webkit-slider-thumb {
   border-top-right-radius: 0;
 }
 
-.save-name {
-}
-
-.save-container {
-}
-
-.close-save,
-.close-libary {
-}
-
 .submit-save {
   margin: 2rem;
   padding: 1rem 3rem;
@@ -270,4 +264,35 @@ input[type="range"]::-webkit-slider-thumb {
 .delete-palette:hover {
   color: indianred !important;
   background-color: #333 !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .colors {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .libary-popup,
+  .libary-popup.active {
+    width: 85vw;
+  }
+
+  .sliders {
+    flex-direction: column;
+    padding: 0.25rem;
+    width: 95%;
+  }
+
+  .sliders span {
+    color: #333 !important;
+  }
+
+  .sliders.active {
+    height: 100px;
+    flex-direction: row;
+  }
+  .sliders input,
+  input[type="range"] {
+    width: 100% !important;
+  }
 }
