@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="description" content="A website for creating color palletes">
     <!--FONTS-->
     <link
       href="https://fonts.googleapis.com/css2?family=Muli:wght@500&display=swap"
@@ -20,12 +22,12 @@
       <div class="color">
         <h2>hex</h2>
         <div class="controls">
-          <button class="adjust"><i class="fas fa-sliders-h"></i></button>
-          <button class="lock"><i class="fas fa-lock-open"></i></button>
+          <button class="adjust" aria-label="adjust colors"><i class="fas fa-sliders-h"></i></button>
+          <button class="lock" aria-label="lock color from changing"><i class="fas fa-lock-open"></i></button>
         </div>
         <!--END controls-->
         <div class="sliders">
-          <button class="close-adjustment">X</button>
+          <button class="close-adjustment" aria-label="close adjustments">X</button>
           <span>hue</span>
           <input
             type="range"
@@ -62,12 +64,12 @@
       <div class="color">
         <h2>hex</h2>
         <div class="controls">
-          <button class="adjust"><i class="fas fa-sliders-h"></i></button>
-          <button class="lock"><i class="fas fa-lock-open"></i></button>
+          <button class="adjust" aria-label="adjust colors"><i class="fas fa-sliders-h"></i></button>
+          <button class="lock" aria-label="lock color from changing"><i class="fas fa-lock-open"></i></button>
         </div>
         <!--END controls-->
         <div class="sliders">
-          <button class="close-adjustment">X</button>
+          <button class="close-adjustment" aria-label="close adjustments">X</button>
           <span>hue</span>
           <input
             type="range"
@@ -104,12 +106,12 @@
       <div class="color">
         <h2>hex</h2>
         <div class="controls">
-          <button class="adjust"><i class="fas fa-sliders-h"></i></button>
-          <button class="lock"><i class="fas fa-lock-open"></i></button>
+          <button class="adjust" aria-label="adjust colors"><i class="fas fa-sliders-h"></i></button>
+          <button class="lock" aria-label="lock color from changing"><i class="fas fa-lock-open"></i></button>
         </div>
         <!--END controls-->
         <div class="sliders">
-          <button class="close-adjustment">X</button>
+          <button class="close-adjustment" aria-label="close adjustments">X</button>
           <span>hue</span>
           <input
             type="range"
@@ -146,12 +148,12 @@
       <div class="color">
         <h2>hex</h2>
         <div class="controls">
-          <button class="adjust"><i class="fas fa-sliders-h"></i></button>
-          <button class="lock"><i class="fas fa-lock-open"></i></button>
+          <button class="adjust" aria-label="adjust colors"><i class="fas fa-sliders-h"></i></button>
+          <button class="lock" aria-label="lock color from changing"><i class="fas fa-lock-open"></i></button>
         </div>
         <!--END controls-->
         <div class="sliders">
-          <button class="close-adjustment">X</button>
+          <button class="close-adjustment" aria-label="close adjustments">X</button>
           <span>hue</span>
           <input
             type="range"
@@ -188,12 +190,12 @@
       <div class="color">
         <h2>hex</h2>
         <div class="controls">
-          <button class="adjust"><i class="fas fa-sliders-h"></i></button>
-          <button class="lock"><i class="fas fa-lock-open"></i></button>
+          <button class="adjust" aria-label="adjust colors"><i class="fas fa-sliders-h"></i></button>
+          <button class="lock" aria-label="lock color from changing"><i class="fas fa-lock-open"></i></button>
         </div>
         <!--END controls-->
         <div class="sliders">
-          <button class="close-adjustment">X</button>
+          <button class="close-adjustment" aria-label="close adjustments">X</button>
           <span>hue</span>
           <input
             type="range"
@@ -254,7 +256,7 @@
     </div>
     <div class="save-container">
         <div class="save-popup">
-            <button class="close-save">X</button>
+            <button class="close-save" aria-label="close save pallete box">X</button>
             <h4>Give your pallet a name</h4>
             <input type="text" maxlength="35" class="save-name">
             <button type="submit" class="submit-save">Save</button>
@@ -262,16 +264,16 @@
     </div>
     <div class="libary-container">
         <div class="libary-popup">
-            <button class="close-libary">X</button>
+            <button class="close-libary" aria-label="close libary">X</button>
             <h4>Pick a pallete</h4>
         </div>
     </div>
-    <script
+    <script defer
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
       integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js" integrity="sha256-gX8uuyxN8stSMHWO9arnnKyenTOALaVAcVB3b6P87e4=" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js" integrity="sha256-gX8uuyxN8stSMHWO9arnnKyenTOALaVAcVB3b6P87e4=" crossorigin="anonymous"></script>
+    <script defer src="main.js"></script>
   </body>
 </html>
